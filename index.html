@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>婚礼邀请函 · Love Terminal</title>
 
 <!-- ========== SEO ========== -->
@@ -19,67 +19,75 @@
 <meta property="og:description" content="2026.11.28 18:00 · 幸福大酒店（广东佛山高明），诚邀您见证我们的婚礼">
 <meta property="og:image" content="https://YOUR-DOMAIN/cover.jpg">
 <meta property="og:url" content="https://YOUR-DOMAIN/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="冯宏远 ♥ 赵婉薇 婚礼邀请函">
-<meta name="twitter:description" content="2026.11.28 18:00 · 幸福大酒店（广东佛山高明），诚邀您见证我们的婚礼">
-<meta name="theme-color" content="#0d1117">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:radial-gradient(1200px 600px at 70% -10%,#0c1a12 0%,#05070a 55%);
+html,body{height:100%}
+body{background:#0f0c29;
   font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Courier New',monospace;
-  display:flex;min-height:100vh;align-items:center;justify-content:center;
-  padding:12px;-webkit-font-smoothing:antialiased}
-.wrap{width:100%;max-width:780px}
-.terminal{background:rgba(13,17,23,.97);border:1px solid #21262d;border-radius:12px;
-  box-shadow:0 24px 70px rgba(0,0,0,.75),0 0 50px rgba(46,160,67,.08);overflow:hidden}
+  height:100vh;height:100dvh;overflow:hidden;-webkit-font-smoothing:antialiased}
+.wrap{width:100%;height:100%}
+.terminal{background:#0f0c29;display:flex;flex-direction:column;height:100%;overflow:hidden}
 /* macOS 标题栏 */
 .bar{display:flex;align-items:center;padding:10px 14px;
-  background:linear-gradient(180deg,#2d333b,#22272e);border-bottom:1px solid #21262d;position:relative}
+  background:#0f0c29;position:relative}
 .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
 .dot+.dot{margin-left:8px}
 .r{background:#ff5f57}.y{background:#febc2e}.g{background:#28c840}
 .bar h1{position:absolute;left:50%;transform:translateX(-50%);font-size:12px;font-weight:400;
-  color:#8b949e;white-space:nowrap;max-width:58%;overflow:hidden;text-overflow:ellipsis}
+  color:#5c609e;white-space:nowrap;max-width:58%;overflow:hidden;text-overflow:ellipsis}
 /* 屏幕区 */
-#screen{padding:14px 16px 24px;font-size:13px;line-height:1.75;color:#c9d1d9;
-  height:80vh;max-height:640px;overflow-y:auto}
+#screen{padding:14px 16px 24px;font-size:13px;line-height:1.75;color:#e8f6ff;
+  text-shadow:0 0 8px rgba(0,240,255,.18);
+  flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+#screen::-webkit-scrollbar{width:0;height:0;display:none}
 .line{white-space:pre-wrap;word-break:break-all;min-height:1em}
 /* 语法配色 */
-.dim{color:#768390}.ok{color:#3fb950;text-shadow:0 0 8px rgba(63,185,80,.3)}
-.blue{color:#58a6ff}.cmd{color:#e6edf3}.p{color:#3fb950;font-weight:700}
-.kw{color:#ff7b72}.str{color:#a5d6ff}.cmt{color:#69777f}.prop{color:#79c0ff}
-.fn{color:#d2a8ff}.var{color:#ffa657}.num{color:#79c0ff}.op{color:#c9d1d9}
+.dim{color:#5c609e;text-shadow:none}
+.ok{color:#00ffd1;text-shadow:0 0 8px rgba(0,255,209,.5)}
+.blue{color:#00f0ff}.cmd{color:#e8f6ff}
+.p{color:#00f0ff;font-weight:700;text-shadow:0 0 8px rgba(0,240,255,.5)}
+.kw{color:#ff2e88;text-shadow:0 0 8px rgba(255,46,136,.5)}
+.str{color:#f9f871;text-shadow:0 0 6px rgba(249,248,113,.35)}
+.cmt{color:#5c609e;text-shadow:none}.prop{color:#00ffd1}
+.fn{color:#c77dff;text-shadow:0 0 8px rgba(199,125,255,.5)}
+.var{color:#00f0ff}.num{color:#33c7ff}.op{color:#e8f6ff}
 /* 光标 */
-.cursor{display:inline-block;width:7px;height:1.05em;background:#3fb950;
+.cursor{display:inline-block;width:7px;height:1.05em;background:#00f0ff;
   vertical-align:-2px;margin-left:1px;animation:blink 1.06s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 /* 请柬卡片 */
-.card{margin:14px 2px 4px;border:1px solid #238636;border-radius:10px;
-  background:linear-gradient(180deg,rgba(46,160,67,.09),rgba(13,17,23,.35));
-  padding:22px 14px;text-align:center}
+.card{margin:14px 2px 4px;border:1px solid #ff79c6;border-radius:10px;
+  background:linear-gradient(180deg,rgba(255,121,198,.12),rgba(15,12,41,.55));
+  box-shadow:0 0 22px rgba(255,121,198,.22),inset 0 0 18px rgba(255,121,198,.06);
+  padding:22px 14px;text-align:center;text-shadow:none}
 .card-row{opacity:0;animation:fadeUp .55s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.en{color:#3fb950;font-size:11px;letter-spacing:3px}
-.names{font-size:22px;color:#ff7b9c;font-weight:700;letter-spacing:2px;margin:10px 0 4px}
-.heart{color:#f85149}
-.hr{border-top:1px dashed rgba(46,160,67,.4);margin:12px auto;width:78%}
-.info{color:#c9d1d9;font-size:14px;line-height:2.1}
-.info b{color:#e6edf3;font-weight:600}
-a.addr{color:#58a6ff;text-decoration:none;border-bottom:1px dashed rgba(88,166,255,.45)}
+.en{color:#ff9ecf;font-size:11px;letter-spacing:3px;text-shadow:0 0 8px rgba(255,121,198,.65)}
+.names{font-size:22px;color:#ff5fa8;font-weight:700;letter-spacing:2px;margin:10px 0 4px;
+  text-shadow:0 0 6px rgba(255,95,168,.85),0 0 18px rgba(255,95,168,.5),0 0 40px rgba(255,95,168,.3)}
+.heart{color:#ff5fa8;text-shadow:0 0 10px rgba(255,95,168,.9),0 0 24px rgba(255,95,168,.55)}
+.hr{border-top:1px dashed rgba(255,121,198,.45);margin:12px auto;width:78%}
+.info{color:#f3e8ff;font-size:14px;line-height:2.1}
+.info b{color:#ffeaf6;font-weight:600;text-shadow:0 0 8px rgba(255,158,207,.35)}
+a.addr{color:#ff8fd0;text-decoration:none;border-bottom:1px dashed rgba(255,143,208,.5);
+  text-shadow:0 0 8px rgba(255,143,208,.4)}
 a.addr:active{opacity:.7}
 .nav-chips{margin-top:10px}
-.nav-chips a{display:inline-block;margin:4px 4px 0;padding:3px 12px;border:1px solid #238636;
-  border-radius:12px;color:#3fb950;font-size:12px;text-decoration:none}
-.nav-chips a:active{background:rgba(46,160,67,.15)}
-.label{color:#8b949e;margin-right:10px}
-.big-days{color:#e3b341;font-size:13px;margin-top:8px}
-.foot{color:#8b949e;font-size:12px;margin-top:4px}
-.tip{text-align:center;color:#4d5866;font-size:11px;margin-top:12px;letter-spacing:1px}
-/* 移动端适配 */
+.nav-chips a{display:inline-block;margin:4px 4px 0;padding:3px 12px;border:1px solid #ff79c6;
+  border-radius:12px;color:#ff9ecf;font-size:12px;text-decoration:none;
+  text-shadow:0 0 6px rgba(255,121,198,.4)}
+.nav-chips a:active{background:rgba(255,121,198,.18)}
+.label{color:#b49ad1;margin-right:10px}
+.big-days{color:#ff9ecf;font-size:13px;margin-top:8px;text-shadow:0 0 10px rgba(255,158,207,.55)}
+.foot{color:#b49ad1;font-size:12px;margin-top:4px}
+/* 移动端适配（终端正文 15px，接近手机浏览器默认 16px） */
 @media (max-width:480px){
-  #screen{font-size:12px;padding:10px 10px 18px;height:78vh}
-  .names{font-size:18px}.bar h1{font-size:10px}
+  #screen{font-size:15px;padding:10px 10px 24px}
+  .names{font-size:20px}
+  .info{font-size:15px}
+  .en{font-size:12px}
+  .bar h1{font-size:10px}
 }
 </style>
 </head>
@@ -92,17 +100,14 @@ a.addr:active{opacity:.7}
     </div>
     <div id="screen"></div>
   </div>
-  <div class="tip">轻点屏幕任意位置可加速动画</div>
 </div>
 
 <script>
 (function(){
-var ACC=1; /* 动画速度系数，点击屏幕加速 */
-document.addEventListener('click',function(){ACC=0.12;});
 function rand(a){return a[Math.floor(Math.random()*a.length)];}
 function pad(n){return n<10?'0'+n:''+n;}
 function q(s){return String.fromCharCode(39)+s+String.fromCharCode(39);}
-function sleep(ms){return new Promise(function(r){setTimeout(r,Math.max(1,ms*ACC));});}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
 
 /* ============ 1. 婚礼信息 ============ */
 var groom='冯宏远',bride='赵婉薇';
@@ -127,13 +132,21 @@ document.title=groom+' ♥ '+bride+' 婚礼邀请函';
 /* ============ 2. 终端输出工具 ============ */
 var sc=document.getElementById('screen');
 function scrollDown(){sc.scrollTop=sc.scrollHeight;}
+/* 打字阶段底部留白 3 行，请柬出现前光标不顶到屏幕底边 */
+var HOLD=3;
+function holdBottom(on){var lh=parseFloat(getComputedStyle(sc).lineHeight)||23;
+  sc.style.paddingBottom=on?(24+HOLD*lh)+'px':'';}
 function mk(cls){var s=document.createElement('span');if(cls){s.className=cls;}return s;}
 function newLine(){var l=document.createElement('div');l.className='line';sc.appendChild(l);scrollDown();return l;}
 function printLine(t,c){var l=newLine();if(c){l.className+=' '+c;}l.textContent=t;}
 async function typeSegs(segs,speed){var l=newLine();
   for(var i=0;i<segs.length;i++){var sp=mk(segs[i][1]);l.appendChild(sp);var t=segs[i][0];
     for(var j=0;j<t.length;j++){sp.textContent+=t.charAt(j);scrollDown();
-      await sleep((speed||20)*(0.6+Math.random()));}}
+      var ms=(speed||20)*(0.6+Math.random());
+      var ch=t.charAt(j);
+      if(Math.random()<0.05){ms+=150+Math.random()*200;}          /* 5% 概率"想一下"，停 150~350ms */
+      if(ch===' '||';,(){}\''.indexOf(ch)>=0){ms+=15+Math.random()*35;} /* 空格/标点后面稍微顿一下 */
+      await sleep(ms);}}
   return l;}
 async function printBlock(lines,cls,gap){
   for(var i=0;i<lines.length;i++){printLine(lines[i],cls);await sleep(gap||90);}}
@@ -168,7 +181,7 @@ function showCard(){
   var items=[
    '<div class=en>W E D D I N G · I N V I T A T I O N</div>',
    '<div class=names>'+groom+' <span class=heart>♥</span> '+bride+'</div>',
-   '<div style=color:#8b949e;font-size:12px>佳期已定 · 敬备喜酌 · 诚邀见证</div>',
+   '<div style=color:#b49ad1;font-size:12px>佳期已定 · 敬备喜酌 · 诚邀见证</div>',
    '<div class=hr></div>',
    '<div class=info><span class=label>时间</span><b>'+DATE_ISO+'</b> '+wkd+' '+TIME_S+'</div>',
    '<div class=info><span class=label>'+lunar+'</span></div>',
@@ -185,6 +198,7 @@ function showCard(){
 
 /* ============ 5. 主流程：登录 → 初始化 → 打代码 → 渲染卡片 ============ */
 async function boot(){
+  holdBottom(true);
   await sleep(500);
   printLine('Last login: '+new Date(Date.now()-2*86400000).toLocaleString('zh-CN')+' on ttys003','dim');
   await sleep(450);
@@ -224,11 +238,23 @@ async function boot(){
     pl.textContent='渲染邀请函 '+b+' '+(k*5)+'%';scrollDown();await sleep(60);}
   printLine('[ DONE ] 邀请函投递成功 · 请查收','ok');
   await sleep(400);
+  holdBottom(false);
   showCard();
   await sleep(3200);
   printLine('');
-  var last=newLine();var sp=mk('p');sp.textContent='$ ';last.appendChild(sp);last.appendChild(mk('cursor'));
-  printLine('PS. 本请柬长期有效 · 转发分享这份喜悦 ♥','cmt');
+  /* 最后一行：$ 提示符 + PS（逐字打字），光标跟在句尾 */
+  var last=newLine();var sp=mk('p');sp.textContent='$ ';last.appendChild(sp);
+  var ps=mk('cmt');last.appendChild(ps);
+  var pstext='PS. 本请柬长期有效 · 转发分享这份喜悦 ♥';
+  for(var i=0;i<pstext.length;i++){
+    ps.textContent+=pstext.charAt(i);scrollDown();
+    var ms=45*(0.6+Math.random());
+    var ch=pstext.charAt(i);
+    if(Math.random()<0.05){ms+=150+Math.random()*200;}          /* 偶尔"想一下" */
+    if(ch===' '||';,(){}·'.indexOf(ch)>=0){ms+=15+Math.random()*35;} /* 标点/空格微顿 */
+    await sleep(ms);
+  }
+  last.appendChild(mk('cursor'));
 }
 boot();
 })();
