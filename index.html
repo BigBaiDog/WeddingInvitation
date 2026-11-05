@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>婚礼邀请函 · Love Terminal</title>
+
+<!-- ========== SEO ========== -->
+<meta name="description" id="metaDesc" content="冯宏远 ♥ 赵婉薇 婚礼邀请函 · 2026.11.28 18:00 · 幸福大酒店，诚邀您见证我们的婚礼">
+<meta name="keywords" content="婚礼邀请函,电子请柬,H5请柬,冯宏远,赵婉薇">
+
+<!-- ========== 微信/QQ 分享卡片 ==========
+     注意：微信链接卡片只读取这里的静态 meta（不执行 JS）。
+     部署上线后需要：
+     1. 把下面两处 YOUR-DOMAIN 换成实际域名（必须 https）
+     2. 封面图放在网站根目录 cover.jpg，建议 500×400（5:4）、jpg、1MB 以内 -->
+<meta property="og:title" content="冯宏远 ♥ 赵婉薇 婚礼邀请函">
+<meta property="og:type" content="website">
+<meta property="og:description" content="2026.11.28 18:00 · 幸福大酒店（广东佛山高明），诚邀您见证我们的婚礼">
+<meta property="og:image" content="https://YOUR-DOMAIN/cover.jpg">
+<meta property="og:url" content="https://YOUR-DOMAIN/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="冯宏远 ♥ 赵婉薇 婚礼邀请函">
+<meta name="twitter:description" content="2026.11.28 18:00 · 幸福大酒店（广东佛山高明），诚邀您见证我们的婚礼">
+<meta name="theme-color" content="#0d1117">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:radial-gradient(1200px 600px at 70% -10%,#0c1a12 0%,#05070a 55%);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Courier New',monospace;
+  display:flex;min-height:100vh;align-items:center;justify-content:center;
+  padding:12px;-webkit-font-smoothing:antialiased}
+.wrap{width:100%;max-width:780px}
+.terminal{background:rgba(13,17,23,.97);border:1px solid #21262d;border-radius:12px;
+  box-shadow:0 24px 70px rgba(0,0,0,.75),0 0 50px rgba(46,160,67,.08);overflow:hidden}
+/* macOS 标题栏 */
+.bar{display:flex;align-items:center;padding:10px 14px;
+  background:linear-gradient(180deg,#2d333b,#22272e);border-bottom:1px solid #21262d;position:relative}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.dot+.dot{margin-left:8px}
+.r{background:#ff5f57}.y{background:#febc2e}.g{background:#28c840}
+.bar h1{position:absolute;left:50%;transform:translateX(-50%);font-size:12px;font-weight:400;
+  color:#8b949e;white-space:nowrap;max-width:58%;overflow:hidden;text-overflow:ellipsis}
+/* 屏幕区 */
+#screen{padding:14px 16px 24px;font-size:13px;line-height:1.75;color:#c9d1d9;
+  height:80vh;max-height:640px;overflow-y:auto}
+.line{white-space:pre-wrap;word-break:break-all;min-height:1em}
+/* 语法配色 */
+.dim{color:#768390}.ok{color:#3fb950;text-shadow:0 0 8px rgba(63,185,80,.3)}
+.blue{color:#58a6ff}.cmd{color:#e6edf3}.p{color:#3fb950;font-weight:700}
+.kw{color:#ff7b72}.str{color:#a5d6ff}.cmt{color:#69777f}.prop{color:#79c0ff}
+.fn{color:#d2a8ff}.var{color:#ffa657}.num{color:#79c0ff}.op{color:#c9d1d9}
+/* 光标 */
+.cursor{display:inline-block;width:7px;height:1.05em;background:#3fb950;
+  vertical-align:-2px;margin-left:1px;animation:blink 1.06s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+/* 请柬卡片 */
+.card{margin:14px 2px 4px;border:1px solid #238636;border-radius:10px;
+  background:linear-gradient(180deg,rgba(46,160,67,.09),rgba(13,17,23,.35));
+  padding:22px 14px;text-align:center}
+.card-row{opacity:0;animation:fadeUp .55s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.en{color:#3fb950;font-size:11px;letter-spacing:3px}
+.names{font-size:22px;color:#ff7b9c;font-weight:700;letter-spacing:2px;margin:10px 0 4px}
+.heart{color:#f85149}
+.hr{border-top:1px dashed rgba(46,160,67,.4);margin:12px auto;width:78%}
+.info{color:#c9d1d9;font-size:14px;line-height:2.1}
+.info b{color:#e6edf3;font-weight:600}
+a.addr{color:#58a6ff;text-decoration:none;border-bottom:1px dashed rgba(88,166,255,.45)}
+a.addr:active{opacity:.7}
+.nav-chips{margin-top:10px}
+.nav-chips a{display:inline-block;margin:4px 4px 0;padding:3px 12px;border:1px solid #238636;
+  border-radius:12px;color:#3fb950;font-size:12px;text-decoration:none}
+.nav-chips a:active{background:rgba(46,160,67,.15)}
+.label{color:#8b949e;margin-right:10px}
+.big-days{color:#e3b341;font-size:13px;margin-top:8px}
+.foot{color:#8b949e;font-size:12px;margin-top:4px}
+.tip{text-align:center;color:#4d5866;font-size:11px;margin-top:12px;letter-spacing:1px}
+/* 移动端适配 */
+@media (max-width:480px){
+  #screen{font-size:12px;padding:10px 10px 18px;height:78vh}
+  .names{font-size:18px}.bar h1{font-size:10px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="terminal">
+    <div class="bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <h1>guest@invite.love — Love Terminal — 80×24</h1>
+    </div>
+    <div id="screen"></div>
+  </div>
+  <div class="tip">轻点屏幕任意位置可加速动画</div>
+</div>
+
+<script>
+(function(){
+var ACC=1; /* 动画速度系数，点击屏幕加速 */
+document.addEventListener('click',function(){ACC=0.12;});
+function rand(a){return a[Math.floor(Math.random()*a.length)];}
+function pad(n){return n<10?'0'+n:''+n;}
+function q(s){return String.fromCharCode(39)+s+String.fromCharCode(39);}
+function sleep(ms){return new Promise(function(r){setTimeout(r,Math.max(1,ms*ACC));});}
+
+/* ============ 1. 婚礼信息 ============ */
+var groom='冯宏远',bride='赵婉薇';
+var d=new Date(2026,10,28,18,0,0); /* 2026年11月28日 18:00 */
+var WK=['周日','周一','周二','周三','周四','周五','周六'];
+var DATE_ISO=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+var TIME_S=pad(d.getHours())+':'+pad(d.getMinutes());var wkd=WK[d.getDay()];
+var vs=['幸福大酒店',''];var addr='广东省佛山市高明区荷城街道高明大道东586号';
+/* 各地图导航链接：装了 App 的直接拉起，没装的打开地图网页 */
+var NAV_LAT='22.892189',NAV_LNG='112.853881',NAV_NAME=encodeURIComponent(vs[0]);
+var NAV_URL='https://uri.amap.com/navigation?from=&to='+NAV_LNG+','+NAV_LAT+','+NAV_NAME+'&mode=car&callnative=1&src=wedding-invitation';        /* 高德 */
+var NAV_BAIDU='https://map.baidu.com/mobile/webapp/navi/geocoder/?location='+NAV_LAT+','+NAV_LNG+'&name='+NAV_NAME+'&src=wedding-invitation&coord_type=0'; /* 百度（coord_type=0 表示 GCJ-02 坐标） */
+var NAV_TENCENT='https://apis.map.qq.com/uri/v1/routeplan?type=drive&to='+NAV_LAT+','+NAV_LNG+','+NAV_NAME+'&referer=wedding-invitation';             /* 腾讯 */
+var NAV_APPLE='https://maps.apple.com/?ll='+NAV_LAT+','+NAV_LNG+'&daddr='+NAV_NAME+'&address='+encodeURIComponent(addr);                                /* Apple 地图 */
+var yrs=rand(['3','5','6','7']),mon=pad(Math.floor(Math.random()*12)+1); /* 已相爱时长，可替换为真实值 */
+var lunar='农历十月二十';
+var days=Math.ceil((d.getTime()-Date.now())/86400000);
+
+/* 页面标签标题（微信分享卡片用的是 <head> 里的静态 og: meta，JS 修改对其无效） */
+document.title=groom+' ♥ '+bride+' 婚礼邀请函';
+
+/* ============ 2. 终端输出工具 ============ */
+var sc=document.getElementById('screen');
+function scrollDown(){sc.scrollTop=sc.scrollHeight;}
+function mk(cls){var s=document.createElement('span');if(cls){s.className=cls;}return s;}
+function newLine(){var l=document.createElement('div');l.className='line';sc.appendChild(l);scrollDown();return l;}
+function printLine(t,c){var l=newLine();if(c){l.className+=' '+c;}l.textContent=t;}
+async function typeSegs(segs,speed){var l=newLine();
+  for(var i=0;i<segs.length;i++){var sp=mk(segs[i][1]);l.appendChild(sp);var t=segs[i][0];
+    for(var j=0;j<t.length;j++){sp.textContent+=t.charAt(j);scrollDown();
+      await sleep((speed||20)*(0.6+Math.random()));}}
+  return l;}
+async function printBlock(lines,cls,gap){
+  for(var i=0;i<lines.length;i++){printLine(lines[i],cls);await sleep(gap||90);}}
+
+/* ============ 3. 代码打字内容（带语法高亮分段） ============ */
+function buildCode(){return [
+ [['const ','kw'],['wedding ','var'],['= {','op']],
+ [['  groom','prop'],[': ','op'],[q(groom),'str'],['   // 他的名字，写在她备注的第一行','cmt']],
+ [['  bride','prop'],[': ','op'],[q(bride),'str'],['   // 她的笑容，是他的全世界','cmt']],
+ [['  date','prop'],[': ','op'],[q(DATE_ISO+' '+TIME_S),'str'],['  // Save the date!','cmt']],
+ [['  place','prop'],[': ','op'],[q(vs[0]+(vs[1]?' · '+vs[1]:'')),'str']],
+ [['  addr','prop'],[': ','op'],[q(addr),'str']],
+ [['  dress','prop'],[': ','op'],[q('盛装出席 · 空腹前来 · 尽兴而归'),'str']],
+ [['};','op']],
+ [],
+ [['function ','kw'],['bless','fn'],['(guest) {','op']],
+ [['  if ','kw'],['(guest.','op'],['willCome','prop'],[') {','op']],
+ [['    wedding.','op'],['join','fn'],['(guest);','op'],['   // 你的到来，是最好的礼物','cmt']],
+ [['  } ','op'],['else','kw'],[' {','op']],
+ [['    wedding.','op'],['miss','prop'],[' += 1;','op'],['  // 没关系，来日方长','cmt']],
+ [['  }','op']],
+ [['  return ','kw'],['Infinity;','num'],['    // 爱没有返回值，只有延续','cmt']],
+ [['}','op']],
+ [],
+ [['bless','fn'],['(you);','op'],['   // you = 正在看这份请柬的你','cmt']]
+];}
+
+/* ============ 4. 请柬卡片 ============ */
+function row(html){var r=document.createElement('div');r.className='card-row';r.innerHTML=html;return r;}
+function showCard(){
+  var c=document.createElement('div');c.className='card';
+  var items=[
+   '<div class=en>W E D D I N G · I N V I T A T I O N</div>',
+   '<div class=names>'+groom+' <span class=heart>♥</span> '+bride+'</div>',
+   '<div style=color:#8b949e;font-size:12px>佳期已定 · 敬备喜酌 · 诚邀见证</div>',
+   '<div class=hr></div>',
+   '<div class=info><span class=label>时间</span><b>'+DATE_ISO+'</b> '+wkd+' '+TIME_S+'</div>',
+   '<div class=info><span class=label>'+lunar+'</span></div>',
+   '<div class=info><span class=label>席设</span><b>'+vs[0]+(vs[1]?' · '+vs[1]:'')+'</b></div>',
+   '<div class=info><span class=label>地址</span><a class=addr href='+NAV_URL+' target=_blank>'+addr+' · 点击导航</a></div>',
+   '<div class=nav-chips><span class=label>地图导航</span><a target=_blank href='+NAV_URL+'>高德</a><a target=_blank href='+NAV_BAIDU+'>百度</a><a target=_blank href='+NAV_TENCENT+'>腾讯</a><a target=_blank href='+NAV_APPLE+'>Apple</a></div>',
+   '<div class=big-days>距婚礼还有 '+days+' 天 · 期待与你相见</div>',
+   '<div class=hr></div>',
+   '<div class=foot>你们的到来，将是我们婚礼最美好的祝福</div>'
+  ];
+  for(var i=0;i<items.length;i++){var r=row(items[i]);r.style.animationDelay=(i*0.25)+'s';c.appendChild(r);}
+  sc.appendChild(c);scrollDown();
+}
+
+/* ============ 5. 主流程：登录 → 初始化 → 打代码 → 渲染卡片 ============ */
+async function boot(){
+  await sleep(500);
+  printLine('Last login: '+new Date(Date.now()-2*86400000).toLocaleString('zh-CN')+' on ttys003','dim');
+  await sleep(450);
+  await typeSegs([['$ ','p'],['ssh wedding@invite.love','cmd']],50);
+  await sleep(350);
+  await printBlock([
+   'Connecting to invite.love (52.0.13.14) port 22... connected.',
+   'The authenticity of host invite.love can not be established.',
+   'ED25519 key fingerprint is SHA256:xOv3+YmU1314LoveYouForever',
+   'Are you sure you want to continue connecting (yes/no)? yes',
+   'Warning: Permanently added invite.love (ED25519) to the list.'
+  ],'dim',120);
+  await sleep(250);
+  await typeSegs([['wedding@invite.love password: ','dim'],['••••••••••••','cmd']],60);
+  await sleep(450);
+  await printBlock([
+   '[ OK ] 握手成功 · session #5201314',
+   '[ OK ] 挂载 /dev/romance -> /love ... done',
+   '[ OK ] 加载 love.db（已相爱 '+yrs+' 年 '+mon+' 个月）... 100%',
+   '[ OK ] 心跳服务已启动 · port 20:88'
+  ],'ok',160);
+  await sleep(300);
+  printLine('WeddingOS v2.4.0 · 万事俱备，只差你','dim');
+  await sleep(550);
+  await typeSegs([['$ ','p'],['cat /etc/wedding/invite.js','cmd']],50);
+  await sleep(250);
+  var CODE=buildCode();
+  for(var i=0;i<CODE.length;i++){
+    if(CODE[i].length===0){printLine('');await sleep(60);continue;}
+    await typeSegs(CODE[i],12);await sleep(40);
+  }
+  await sleep(450);
+  await typeSegs([['$ ','p'],['node invite.js --send-to=guest','cmd']],45);
+  await sleep(350);
+  var pl=newLine();pl.className='line blue';
+  for(var k=0;k<=20;k++){var b='[';for(var m=0;m<20;m++){b+=(m<k?'█':'░');}
+    pl.textContent='渲染邀请函 '+b+' '+(k*5)+'%';scrollDown();await sleep(60);}
+  printLine('[ DONE ] 邀请函投递成功 · 请查收','ok');
+  await sleep(400);
+  showCard();
+  await sleep(3200);
+  printLine('');
+  var last=newLine();var sp=mk('p');sp.textContent='$ ';last.appendChild(sp);last.appendChild(mk('cursor'));
+  printLine('PS. 本请柬长期有效 · 转发分享这份喜悦 ♥','cmt');
+}
+boot();
+})();
+</script>
+</body>
+</html>
