@@ -96,7 +96,7 @@ a.addr:active{opacity:.7}
   <div class="terminal">
     <div class="bar">
       <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-      <h1>guest@invite.love — Love Terminal — 80×24</h1>
+      <h1>Love Terminal</h1>
     </div>
     <div id="screen"></div>
   </div>
@@ -154,12 +154,11 @@ async function printBlock(lines,cls,gap){
 /* ============ 3. 代码打字内容（带语法高亮分段） ============ */
 function buildCode(){return [
  [['const ','kw'],['wedding ','var'],['= {','op']],
- [['  groom','prop'],[': ','op'],[q(groom),'str'],['   // 他的名字，写在她备注的第一行','cmt']],
- [['  bride','prop'],[': ','op'],[q(bride),'str'],['   // 她的笑容，是他的全世界','cmt']],
- [['  date','prop'],[': ','op'],[q(DATE_ISO+' '+TIME_S),'str'],['  // Save the date!','cmt']],
+ [['  groom','prop'],[': ','op'],[q(groom),'str'],['  // 他的名字，写在她备注的第一行','cmt']],
+ [['  bride','prop'],[': ','op'],[q(bride),'str'],['  // 她的笑容，是他的全世界','cmt']],
+ [['  date','prop'],[': ','op'],[q(DATE_ISO),'str'],['  // Save the date!','cmt']],
  [['  place','prop'],[': ','op'],[q(vs[0]+(vs[1]?' · '+vs[1]:'')),'str']],
  [['  addr','prop'],[': ','op'],[q(addr),'str']],
- [['  dress','prop'],[': ','op'],[q('盛装出席 · 空腹前来 · 尽兴而归'),'str']],
  [['};','op']],
  [],
  [['function ','kw'],['bless','fn'],['(guest) {','op']],
@@ -200,30 +199,27 @@ function showCard(){
 async function boot(){
   holdBottom(true);
   await sleep(500);
-  printLine('Last login: '+new Date(Date.now()-2*86400000).toLocaleString('zh-CN')+' on ttys003','dim');
+  printLine('Last login: '+new Date(Date.now()-2*86400000).toLocaleString('zh-CN')+' on ttys001','dim');
   await sleep(450);
-  await typeSegs([['$ ','p'],['ssh wedding@invite.love','cmd']],50);
+  await typeSegs([['$ ','p'],['ssh root@weddinginvite.love','cmd']],50);
   await sleep(350);
   await printBlock([
-   'Connecting to invite.love (52.0.13.14) port 22... connected.',
-   'The authenticity of host invite.love can not be established.',
-   'ED25519 key fingerprint is SHA256:xOv3+YmU1314LoveYouForever',
-   'Are you sure you want to continue connecting (yes/no)? yes',
-   'Warning: Permanently added invite.love (ED25519) to the list.'
+   'Connecting to host weddinginvite.love (52.0.13.14) port 22...',
+   'Connection established.'
   ],'dim',120);
   await sleep(250);
-  await typeSegs([['wedding@invite.love password: ','dim'],['••••••••••••','cmd']],60);
+  await typeSegs([['root@weddinginvite.love'+"'"+'s password: 🔑 ','dim'],['●●●●●●●●','cmd']],60);
   await sleep(450);
   await printBlock([
    '[ OK ] 握手成功 · session #5201314',
    '[ OK ] 挂载 /dev/romance -> /love ... done',
-   '[ OK ] 加载 love.db（已相爱 '+yrs+' 年 '+mon+' 个月）... 100%',
-   '[ OK ] 心跳服务已启动 · port 20:88'
+   '[ OK ] 加载 love.db（已相爱 4 年 05 个月）... 100%',
+   '[ OK ] 心跳服务已启动 · port 10:20'
   ],'ok',160);
   await sleep(300);
   printLine('WeddingOS v2.4.0 · 万事俱备，只差你','dim');
   await sleep(550);
-  await typeSegs([['$ ','p'],['cat /etc/wedding/invite.js','cmd']],50);
+  await typeSegs([['# ','p'],['cat /etc/wedding/invite.js','cmd']],50);
   await sleep(250);
   var CODE=buildCode();
   for(var i=0;i<CODE.length;i++){
@@ -231,7 +227,7 @@ async function boot(){
     await typeSegs(CODE[i],12);await sleep(40);
   }
   await sleep(450);
-  await typeSegs([['$ ','p'],['node invite.js --send-to=guest','cmd']],45);
+  await typeSegs([['# ','p'],['node invite.js --send-to=guest','cmd']],45);
   await sleep(350);
   var pl=newLine();pl.className='line blue';
   for(var k=0;k<=20;k++){var b='[';for(var m=0;m<20;m++){b+=(m<k?'█':'░');}
@@ -243,7 +239,7 @@ async function boot(){
   await sleep(3200);
   printLine('');
   /* 最后一行：$ 提示符 + PS（逐字打字），光标跟在句尾 */
-  var last=newLine();var sp=mk('p');sp.textContent='$ ';last.appendChild(sp);
+  var last=newLine();var sp=mk('p');sp.textContent='# ';last.appendChild(sp);
   var ps=mk('cmt');last.appendChild(ps);
   var pstext='PS. 本请柬长期有效 · 转发分享这份喜悦 ♥';
   for(var i=0;i<pstext.length;i++){
