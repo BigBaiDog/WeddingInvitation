@@ -4,68 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>婚礼邀请函 · Love Terminal</title>
-
-<!-- ========== SEO ========== -->
-<meta name="description" id="metaDesc" content="冯宏远 ♥ 赵婉薇 婚礼邀请函 · 2026.11.28 18:00 · 幸福大酒店，诚邀您见证我们的婚礼">
+<meta name="description" content="冯宏远 ♥ 赵婉薇 婚礼邀请函 · 2026.11.28 18:00 · 幸福大酒店，诚邀您见证我们的婚礼">
 <meta name="keywords" content="婚礼邀请函,电子请柬,H5请柬,冯宏远,赵婉薇">
-
-<!-- ========== 微信/QQ 分享卡片 ==========
-     注意：微信链接卡片只读取这里的静态 meta（不执行 JS）。
-     部署上线后需要：
-     1. 把下面两处 YOUR-DOMAIN 换成实际域名（必须 https）
-     2. 封面图放在网站根目录 cover.jpg，建议 500×400（5:4）、jpg、1MB 以内 -->
 <meta property="og:title" content="冯宏远 ♥ 赵婉薇 婚宴邀请函">
 <meta property="og:type" content="website">
 <meta property="og:description" content="2026.11.28 18:00 · 幸福大酒店（广东佛山高明），诚邀您见证我们的婚礼">
 <meta property="og:image" content="https://bigbaidog.github.io/WeddingInvitation/cover.jpg">
 <meta property="og:url" content="https://bigbaidog.github.io/">
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
 body{background:#0f0c29;
   font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Courier New',monospace;
-  height:100vh;height:100dvh;overflow:hidden;-webkit-font-smoothing:antialiased}
-.wrap{width:100%;height:100%}
-.terminal{background:#0f0c29;display:flex;flex-direction:column;height:100%;overflow:hidden}
-/* macOS 标题栏 */
-/* 真实 macOS 标题栏：高 28pt，圆点左边距 12pt、间隙 8pt */
-.bar{display:flex;align-items:center;padding:0 12px;height:28px;
-  background:#0f0c29;position:relative}
-.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+  height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden;-webkit-font-smoothing:antialiased}
+.bar{display:flex;align-items:center;padding:0 12px;height:28px;position:relative}
+.dot{width:12px;height:12px;border-radius:50%}
 .dot+.dot{margin-left:8px}
 .r{background:#ff5f57}.y{background:#febc2e}.g{background:#28c840}
-/* 真实 macOS 标题：13pt / Semibold */
 .bar h1{position:absolute;left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;
   color:#5c609e;text-shadow:0 0 8px rgba(92,96,158,.5);white-space:nowrap;max-width:58%;overflow:hidden;text-overflow:ellipsis}
-/* 屏幕区 */
-/* 终端正文：12px / 1.4（接近 macOS 放大一档的终端设置）· 辉光颜色跟随各自字体颜色 */
 #screen{padding:14px 16px 24px;font-size:12px;line-height:1.4;color:#e8f6ff;
   text-shadow:0 0 8px rgba(232,246,255,.5);
   flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
-#screen::-webkit-scrollbar{width:0;height:0;display:none}
+#screen::-webkit-scrollbar{display:none}
 .line{white-space:pre-wrap;word-break:break-all;min-height:1em}
-/* 语法配色 */
-/* Cyberpunk 语法配色 · 每个字符的辉光 = 它自己的字体颜色 */
-.dim{color:#5c609e;text-shadow:0 0 8px rgba(92,96,158,.5)}
-.ok{color:#00ffd1;text-shadow:0 0 8px rgba(0,255,209,.5)}
-.blue{color:#00f0ff;text-shadow:0 0 8px rgba(0,240,255,.5)}
-.cmd{color:#e8f6ff;text-shadow:0 0 8px rgba(232,246,255,.5)}
+.dim,.cmt{color:#5c609e;text-shadow:0 0 8px rgba(92,96,158,.5)}
+.ok,.prop{color:#00ffd1;text-shadow:0 0 8px rgba(0,255,209,.5)}
+.blue,.var{color:#00f0ff;text-shadow:0 0 8px rgba(0,240,255,.5)}
+.cmd,.op{color:#e8f6ff;text-shadow:0 0 8px rgba(232,246,255,.5)}
 .p{color:#00f0ff;font-weight:700;text-shadow:0 0 8px rgba(0,240,255,.5)}
 .kw{color:#ff2e88;text-shadow:0 0 8px rgba(255,46,136,.5)}
 .str{color:#f9f871;text-shadow:0 0 8px rgba(249,248,113,.5)}
-.cmt{color:#5c609e;text-shadow:0 0 8px rgba(92,96,158,.5)}
-.prop{color:#00ffd1;text-shadow:0 0 8px rgba(0,255,209,.5)}
 .fn{color:#c77dff;text-shadow:0 0 8px rgba(199,125,255,.5)}
-.var{color:#00f0ff;text-shadow:0 0 8px rgba(0,240,255,.5)}
 .num{color:#33c7ff;text-shadow:0 0 8px rgba(51,199,255,.5)}
-.op{color:#e8f6ff;text-shadow:0 0 8px rgba(232,246,255,.5)}
-/* 光标 */
 .cursor{display:inline-block;width:7px;height:1.05em;background:#00f0ff;
   vertical-align:-2px;margin-left:1px;animation:blink 1.06s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-/* 请柬卡片 */
-/* 方案 C · 请柬票券：外实线 + 内虚线双边框 */
 .card{margin:14px 2px 4px;border:1px solid #ff79c6;border-radius:10px;
   outline:1px dashed rgba(255,121,198,.35);outline-offset:-7px;position:relative;
   background:linear-gradient(180deg,rgba(255,121,198,.12),rgba(15,12,41,.55));
@@ -73,27 +46,27 @@ body{background:#0f0c29;
   padding:22px 14px;text-align:center;text-shadow:none;line-height:1.75}
 .card-row{opacity:0;animation:fadeUp .5s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.heart{color:#ff5fa8;text-shadow:0 0 8px rgba(255,95,168,.9),0 0 20px rgba(255,95,168,.55),0 0 44px rgba(255,95,168,.3)}
+.heart,.t-couple{color:#ff5fa8;
+  text-shadow:0 0 8px rgba(255,95,168,.9),0 0 20px rgba(255,95,168,.55),0 0 44px rgba(255,95,168,.3)}
+.t-couple{font-size:24px;font-weight:700;letter-spacing:3px;margin:10px 0 2px}
 .t-title{font-size:16px;font-weight:700;letter-spacing:8px;color:#ff9ecf;
   text-shadow:0 0 8px rgba(255,158,207,.5);margin:8px 0 2px}
 .t-en{color:#6b7099;font-size:10px;letter-spacing:4px;text-shadow:0 0 8px rgba(107,112,153,.5)}
-.t-couple{font-size:24px;font-weight:700;color:#ff5fa8;letter-spacing:3px;margin:10px 0 2px;
-  text-shadow:0 0 8px rgba(255,95,168,.9),0 0 20px rgba(255,95,168,.55),0 0 44px rgba(255,95,168,.3)}
 .t-perf{position:relative;border-top:1px dashed rgba(255,121,198,.55);margin:14px 0;width:100%}
-.punch{position:absolute;top:-7px;width:14px;height:14px;border-radius:50%;
+.t-perf::before,.t-perf::after{content:'';position:absolute;top:-7px;width:14px;height:14px;border-radius:50%;
   background:#0f0c29;border:1px solid rgba(255,121,198,.45)}
-.punch.l{left:-8px}.punch.r{right:-8px}
+.t-perf::before{left:-8px}.t-perf::after{right:-8px}
 .info{color:#f3e8ff;font-size:14px;line-height:2.1;text-shadow:0 0 8px rgba(243,232,255,.5)}
 .info b{color:#ffeaf6;font-weight:600;text-shadow:0 0 8px rgba(255,234,246,.5)}
 a.addr{color:#ff8fd0;text-decoration:none;border-bottom:1px dashed rgba(255,143,208,.5);
   text-shadow:0 0 8px rgba(255,143,208,.5)}
 a.addr:active{opacity:.7}
-.label{color:#b49ad1;margin-right:10px;text-shadow:0 0 8px rgba(180,154,209,.5)}
+.label,.foot{color:#b49ad1;text-shadow:0 0 8px rgba(180,154,209,.5)}
+.label{margin-right:10px}
+.foot{font-size:12px;margin-top:4px}
 .big-days{color:#ff9ecf;font-size:13px;margin-top:8px;text-shadow:0 0 8px rgba(255,158,207,.5)}
-.foot{color:#b49ad1;font-size:12px;margin-top:4px;text-shadow:0 0 8px rgba(180,154,209,.5)}
-/* 移动端适配（终端正文 15px，接近手机浏览器默认 16px） */
 @media (max-width:480px){
-  #screen{font-size:15px;line-height:1.4;padding:10px 10px 24px}
+  #screen{font-size:15px;padding:10px 10px 24px}
   .t-couple{font-size:22px}
   .t-title{letter-spacing:5px}
   .info{font-size:15px}
@@ -102,58 +75,38 @@ a.addr:active{opacity:.7}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="terminal">
-    <div class="bar">
-      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-      <h1>Terminal</h1>
-    </div>
-    <div id="screen"></div>
-  </div>
+<div class="bar">
+  <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+  <h1>Terminal</h1>
 </div>
-
+<div id="screen"></div>
 <script>
 (function(){
-function rand(a){return a[Math.floor(Math.random()*a.length)];}
 function pad(n){return n<10?'0'+n:''+n;}
-function q(s){return String.fromCharCode(39)+s+String.fromCharCode(39);}
+function q(s){return "'"+s+"'"}
 function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
-function jitter(ms){return ms*(0.7+0.6*Math.random());} /* 行间隔轻度随机：原值 ±30% */
-
-/* ============ 1. 婚礼信息 ============ */
+function jitter(ms){return ms*(0.7+0.6*Math.random());}
 var groom='冯宏远',bride='赵婉薇';
-var d=new Date(2026,10,28,18,0,0); /* 2026年11月28日 18:00 */
+var d=new Date(2026,10,28,18,0,0);
 var WK=['周日','周一','周二','周三','周四','周五','周六'];
 var DATE_ISO=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
-var TIME_S=pad(d.getHours())+':'+pad(d.getMinutes());var wkd=WK[d.getDay()];
-var vs=['幸福大酒店',''];var addr='广东省佛山市高明区荷城街道高明大道东586号';
-/* 各地图导航链接：装了 App 的直接拉起，没装的打开地图网页 */
-var NAV_LAT='22.892189',NAV_LNG='112.853881',NAV_NAME=encodeURIComponent(vs[0]);
-var NAV_URL='https://uri.amap.com/navigation?from=&to='+NAV_LNG+','+NAV_LAT+','+NAV_NAME+'&mode=car&callnative=1&src=wedding-invitation';        /* 高德 */
-/* 男方家 / 女方家：按名称搜索式导航（高德 POI 定位，避免村级地点坐标偏差带错路） */
+var TIME_S=pad(d.getHours())+':'+pad(d.getMinutes()),wkd=WK[d.getDay()];
+var vs='幸福大酒店',addr='广东省佛山市高明区荷城街道高明大道东586号';
+var NAV_URL='https://uri.amap.com/navigation?from=&to=112.853881,22.892189,'+encodeURIComponent(vs)+'&mode=car&callnative=1&src=wedding-invitation';
 var NAV_GROOM='https://uri.amap.com/search?keyword='+encodeURIComponent('佛山市高明区荷城街道名湖世家');
 var NAV_BRIDE='https://uri.amap.com/search?keyword='+encodeURIComponent('佛山市高明区上良村赵氏大宗祠');
-var yrs=rand(['3','5','6','7']),mon=pad(Math.floor(Math.random()*12)+1); /* 已相爱时长，可替换为真实值 */
 var lunar='农历十月二十';
 var days=Math.ceil((d.getTime()-Date.now())/86400000);
-
-/* 页面标签标题（微信分享卡片用的是 <head> 里的静态 og: meta，JS 修改对其无效） */
 document.title=groom+' ♥ '+bride+' 婚礼邀请函';
-
-/* ============ 2. 终端输出工具 ============ */
 var sc=document.getElementById('screen');
 function scrollDown(){sc.scrollTop=sc.scrollHeight;}
-/* 打字阶段底部留白 3 行，请柬出现前光标不顶到屏幕底边 */
 var HOLD=3;
 function holdBottom(on){var lh=parseFloat(getComputedStyle(sc).lineHeight)||23;
   sc.style.paddingBottom=on?(24+HOLD*lh)+'px':'';}
 function mk(cls){var s=document.createElement('span');if(cls){s.className=cls;}return s;}
 function newLine(){var l=document.createElement('div');l.className='line';sc.appendChild(l);scrollDown();return l;}
 function printLine(t,c){var l=newLine();if(c){l.className+=' '+c;}l.textContent=t;}
-/* 核心打字效果：30ms/字 × 0.5~1.5 随机快慢；
-   "想一下"（5% 概率）与 标点/空格 停顿统一为 原基础 + 50~100ms；factor 供代码区 4 倍速 */
 var TYPE_SPEED=30;
-/* punct 传 false 可关闭标点停顿（代码区用），5% 思考停顿始终保留 */
 async function typeText(span,text,factor,punct){
   var f=factor||1;
   for(var j=0;j<text.length;j++){
@@ -161,7 +114,7 @@ async function typeText(span,text,factor,punct){
     var ms=TYPE_SPEED*(0.5+Math.random());
     var ch=text.charAt(j);
     if(Math.random()<0.05||(punct!==false&&(ch===' '||';,(){}\'·'.indexOf(ch)>=0))){
-      ms+=TYPE_SPEED+(50+Math.random()*50);} /* 停顿：原基础 + 50~100ms */
+      ms+=TYPE_SPEED+(50+Math.random()*50);}
     await sleep(ms*f);
   }}
 async function typeSegs(segs,factor,punct){var l=newLine();
@@ -170,14 +123,12 @@ async function typeSegs(segs,factor,punct){var l=newLine();
   return l;}
 async function printBlock(lines,cls,gap){
   for(var i=0;i<lines.length;i++){printLine(lines[i],cls);await sleep(jitter(gap||90));}}
-
-/* ============ 3. 代码打字内容（带语法高亮分段） ============ */
-function buildCode(){return [
+var CODE=[
  [['const ','kw'],['wedding ','var'],['= {','op']],
  [['  groom','prop'],[': ','op'],[q(groom),'str'],['      // 他的名字，写在她备注的第一行','cmt']],
  [['  bride','prop'],[': ','op'],[q(bride),'str'],['      // 她的笑容，是他的全世界','cmt']],
  [['  date','prop'],[': ','op'],[q(DATE_ISO),'str'],['  // Save the date!','cmt']],
- [['  place','prop'],[': ','op'],[q(vs[0]+(vs[1]?' · '+vs[1]:'')),'str']],
+ [['  place','prop'],[': ','op'],[q(vs),'str']],
  [['  addr','prop'],[': ','op'],[q(addr),'str']],
  [['};','op']],
  [],
@@ -191,34 +142,31 @@ function buildCode(){return [
  [['}','op']],
  [],
  [['bless','fn'],['(you);','op'],['        // you = 正在看这份请柬的你','cmt']]
-];}
-
-/* ============ 4. 请柬卡片 ============ */
-function row(html){var r=document.createElement('div');r.className='card-row';r.innerHTML=html;return r;}
+];
 function showCard(){
   var c=document.createElement('div');c.className='card';
   var items=[
    '<div class=t-title>婚宴请柬</div>',
    '<div class=t-en>W E D D I N G &nbsp; I N V I T A T I O N</div>',
    '<div class=t-couple>'+groom+' <span class=heart>×</span> '+bride+'</div>',
-   '<div class=t-perf><span class=punch l></span><span class=punch r></span></div>',
+   '<div class=t-perf></div>',
    '<div class=info><span class=label>日期</span><b>'+DATE_ISO+'</b> '+wkd+' · '+lunar+'</div>',
    '<div class=info><span class=label>男方家</span><a class=addr href='+NAV_GROOM+' target=_blank>佛山市高明区荷城街道名湖世家18座1302</a></div>',
    '<div class=info><span class=label>女方家</span><a class=addr href='+NAV_BRIDE+' target=_blank>佛山市高明区荷城街道上良村128号</a></div>',
-   '<div class=info><b>席设 '+vs[0]+(vs[1]?' · '+vs[1]:'')+' · '+TIME_S+' 入席</b></div>',
+   '<div class=info><b>席设 '+vs+' · '+TIME_S+' 入席</b></div>',
    '<div class=info><span class=label>地址</span><a class=addr href='+NAV_URL+' target=_blank>'+addr+'</a></div>',
    '<div class=big-days>距婚礼还有 '+days+' 天 · 期待与你相见</div>',
    '<div class=foot>— 诚邀莅临 —</div>'
   ];
-  /* 卡片渐入：行间隔 0.2s × 11 行 + 单行 0.5s ≈ 2.5s（<3s） */
-  for(var i=0;i<items.length;i++){var r=row(items[i]);r.style.animationDelay=(i*0.2)+'s';c.appendChild(r);}
+  for(var i=0;i<items.length;i++){
+    var r=document.createElement('div');r.className='card-row';r.innerHTML=items[i];
+    r.style.animationDelay=(i*0.2)+'s';c.appendChild(r);
+  }
   sc.appendChild(c);scrollDown();
 }
-
-/* ============ 5. 主流程：登录 → 初始化 → 打代码 → 渲染卡片 ============ */
 async function boot(){
   holdBottom(true);
-  printLine('Last login: '+new Date(Date.now()-2*86400000).toLocaleString('zh-CN')+' on ttys001','dim'); /* 加载后立即显示 */
+  printLine('Last login: '+new Date(Date.now()-2*86400000).toLocaleString('zh-CN')+' on ttys001','dim');
   await sleep(jitter(450));
   await typeSegs([['$ ','p'],['ssh root@weddinginvite.love','cmd']]);
   await sleep(jitter(350));
@@ -227,7 +175,6 @@ async function boot(){
    'Connection established.'
   ],'dim',120);
   await sleep(jitter(250));
-  /* 密码提示整行出现，● 逐字打字 */
   var pw=newLine();
   var pwt=mk('dim');pwt.textContent="root@weddinginvite.love's password: 🔑 ";pw.appendChild(pwt);
   var pwd=mk('cmd');pw.appendChild(pwd);
@@ -244,10 +191,9 @@ async function boot(){
   await sleep(jitter(550));
   await typeSegs([['# ','p'],['cat /etc/wedding/invite.js','cmd']]);
   await sleep(jitter(250));
-  var CODE=buildCode();
   for(var i=0;i<CODE.length;i++){
     if(CODE[i].length===0){printLine('');await sleep(60);continue;}
-    await typeSegs(CODE[i],0.25,false);await sleep(jitter(40)); /* 代码区 4 倍速，关闭标点停顿 */
+    await typeSegs(CODE[i],0.25,false);await sleep(jitter(40));
   }
   await sleep(jitter(450));
   await typeSegs([['# ','p'],['node invite.js --send-to=guest','cmd']]);
@@ -257,10 +203,9 @@ async function boot(){
     pl.textContent='渲染邀请函 '+b+' '+(k*5)+'%';scrollDown();await sleep(jitter(60));}
   printLine('[ DONE ] 邀请函投递成功 · 请查收','ok');
   holdBottom(false);
-  showCard(); /* 立即显示请柬 */
+  showCard();
   await sleep(3200);
   printLine('');
-  /* 最后一行：$ 提示符 + PS（逐字打字），光标跟在句尾 */
   var last=newLine();var sp=mk('p');sp.textContent='# ';last.appendChild(sp);
   var ps=mk('cmt');last.appendChild(ps);
   await typeText(ps,'PS. 本请柬长期有效 · 转发分享这份喜悦 ♥');
