@@ -29,15 +29,18 @@ body{background:#0f0c29;
 .wrap{width:100%;height:100%}
 .terminal{background:#0f0c29;display:flex;flex-direction:column;height:100%;overflow:hidden}
 /* macOS 标题栏 */
-.bar{display:flex;align-items:center;padding:10px 14px;
+/* 真实 macOS 标题栏：高 28pt，圆点左边距 12pt、间隙 8pt */
+.bar{display:flex;align-items:center;padding:0 12px;height:28px;
   background:#0f0c29;position:relative}
 .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
 .dot+.dot{margin-left:8px}
 .r{background:#ff5f57}.y{background:#febc2e}.g{background:#28c840}
-.bar h1{position:absolute;left:50%;transform:translateX(-50%);font-size:12px;font-weight:400;
+/* 真实 macOS 标题：13pt / Semibold */
+.bar h1{position:absolute;left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;
   color:#5c609e;white-space:nowrap;max-width:58%;overflow:hidden;text-overflow:ellipsis}
 /* 屏幕区 */
-#screen{padding:14px 16px 24px;font-size:13px;line-height:1.75;color:#e8f6ff;
+/* 终端正文：12px / 1.4（接近 macOS 放大一档的终端设置） */
+#screen{padding:14px 16px 24px;font-size:12px;line-height:1.4;color:#e8f6ff;
   text-shadow:0 0 8px rgba(0,240,255,.18);
   flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
 #screen::-webkit-scrollbar{width:0;height:0;display:none}
@@ -60,7 +63,7 @@ body{background:#0f0c29;
 .card{margin:14px 2px 4px;border:1px solid #ff79c6;border-radius:10px;
   background:linear-gradient(180deg,rgba(255,121,198,.12),rgba(15,12,41,.55));
   box-shadow:0 0 22px rgba(255,121,198,.22),inset 0 0 18px rgba(255,121,198,.06);
-  padding:22px 14px;text-align:center;text-shadow:none}
+  padding:22px 14px;text-align:center;text-shadow:none;line-height:1.75}
 .card-row{opacity:0;animation:fadeUp .55s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .en{color:#ff9ecf;font-size:11px;letter-spacing:3px;text-shadow:0 0 8px rgba(255,121,198,.65)}
@@ -83,7 +86,7 @@ a.addr:active{opacity:.7}
 .foot{color:#b49ad1;font-size:12px;margin-top:4px}
 /* 移动端适配（终端正文 15px，接近手机浏览器默认 16px） */
 @media (max-width:480px){
-  #screen{font-size:15px;padding:10px 10px 24px}
+  #screen{font-size:15px;line-height:1.4;padding:10px 10px 24px}
   .names{font-size:20px}
   .info{font-size:15px}
   .en{font-size:12px}
@@ -96,7 +99,7 @@ a.addr:active{opacity:.7}
   <div class="terminal">
     <div class="bar">
       <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-      <h1>Love Terminal</h1>
+      <h1>Terminal</h1>
     </div>
     <div id="screen"></div>
   </div>
@@ -108,6 +111,7 @@ function rand(a){return a[Math.floor(Math.random()*a.length)];}
 function pad(n){return n<10?'0'+n:''+n;}
 function q(s){return String.fromCharCode(39)+s+String.fromCharCode(39);}
 function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
+function jitter(ms){return ms*(0.7+0.6*Math.random());} /* 行间隔轻度随机：原值 ±30% */
 
 /* ============ 1. 婚礼信息 ============ */
 var groom='冯宏远',bride='赵婉薇';
@@ -139,17 +143,26 @@ function holdBottom(on){var lh=parseFloat(getComputedStyle(sc).lineHeight)||23;
 function mk(cls){var s=document.createElement('span');if(cls){s.className=cls;}return s;}
 function newLine(){var l=document.createElement('div');l.className='line';sc.appendChild(l);scrollDown();return l;}
 function printLine(t,c){var l=newLine();if(c){l.className+=' '+c;}l.textContent=t;}
-async function typeSegs(segs,speed){var l=newLine();
-  for(var i=0;i<segs.length;i++){var sp=mk(segs[i][1]);l.appendChild(sp);var t=segs[i][0];
-    for(var j=0;j<t.length;j++){sp.textContent+=t.charAt(j);scrollDown();
-      var ms=(speed||20)*(0.6+Math.random());
-      var ch=t.charAt(j);
-      if(Math.random()<0.05){ms+=150+Math.random()*200;}          /* 5% 概率"想一下"，停 150~350ms */
-      if(ch===' '||';,(){}\''.indexOf(ch)>=0){ms+=15+Math.random()*35;} /* 空格/标点后面稍微顿一下 */
-      await sleep(ms);}}
+/* 核心打字效果：50ms/字 × 0.5~1.5 随机快慢；
+   "想一下"（5% 概率）与 标点/空格 停顿统一为 原基础 + 100~200ms；factor 供代码区 2 倍速 */
+var TYPE_SPEED=50;
+/* punct 传 false 可关闭标点停顿（代码区用），5% 思考停顿始终保留 */
+async function typeText(span,text,factor,punct){
+  var f=factor||1;
+  for(var j=0;j<text.length;j++){
+    span.textContent+=text.charAt(j);scrollDown();
+    var ms=TYPE_SPEED*(0.5+Math.random());
+    var ch=text.charAt(j);
+    if(Math.random()<0.05||(punct!==false&&(ch===' '||';,(){}\'·'.indexOf(ch)>=0))){
+      ms+=TYPE_SPEED+(100+Math.random()*100);} /* 停顿：原基础 + 100~200ms */
+    await sleep(ms*f);
+  }}
+async function typeSegs(segs,factor,punct){var l=newLine();
+  for(var i=0;i<segs.length;i++){var sp=mk(segs[i][1]);l.appendChild(sp);
+    await typeText(sp,segs[i][0],factor,punct);}
   return l;}
 async function printBlock(lines,cls,gap){
-  for(var i=0;i<lines.length;i++){printLine(lines[i],cls);await sleep(gap||90);}}
+  for(var i=0;i<lines.length;i++){printLine(lines[i],cls);await sleep(jitter(gap||90));}}
 
 /* ============ 3. 代码打字内容（带语法高亮分段） ============ */
 function buildCode(){return [
@@ -198,58 +211,52 @@ function showCard(){
 /* ============ 5. 主流程：登录 → 初始化 → 打代码 → 渲染卡片 ============ */
 async function boot(){
   holdBottom(true);
-  await sleep(500);
-  printLine('Last login: '+new Date(Date.now()-2*86400000).toLocaleString('zh-CN')+' on ttys001','dim');
-  await sleep(450);
-  await typeSegs([['$ ','p'],['ssh root@weddinginvite.love','cmd']],50);
-  await sleep(350);
+  printLine('Last login: '+new Date(Date.now()-2*86400000).toLocaleString('zh-CN')+' on ttys001','dim'); /* 加载后立即显示 */
+  await sleep(jitter(450));
+  await typeSegs([['$ ','p'],['ssh root@weddinginvite.love','cmd']]);
+  await sleep(jitter(350));
   await printBlock([
    'Connecting to host weddinginvite.love (52.0.13.14) port 22...',
    'Connection established.'
   ],'dim',120);
-  await sleep(250);
-  await typeSegs([['root@weddinginvite.love'+"'"+'s password: 🔑 ','dim'],['●●●●●●●●','cmd']],60);
-  await sleep(450);
+  await sleep(jitter(250));
+  /* 密码提示整行出现，● 逐字打字 */
+  var pw=newLine();
+  var pwt=mk('dim');pwt.textContent="root@weddinginvite.love's password: 🔑 ";pw.appendChild(pwt);
+  var pwd=mk('cmd');pw.appendChild(pwd);
+  await typeText(pwd,'●●●●●●●●');
+  await sleep(jitter(450));
   await printBlock([
    '[ OK ] 握手成功 · session #5201314',
    '[ OK ] 挂载 /dev/romance -> /love ... done',
    '[ OK ] 加载 love.db（已相爱 4 年 05 个月）... 100%',
    '[ OK ] 心跳服务已启动 · port 10:20'
   ],'ok',160);
-  await sleep(300);
+  await sleep(jitter(300));
   printLine('WeddingOS v2.4.0 · 万事俱备，只差你','dim');
-  await sleep(550);
-  await typeSegs([['# ','p'],['cat /etc/wedding/invite.js','cmd']],50);
-  await sleep(250);
+  await sleep(jitter(550));
+  await typeSegs([['# ','p'],['cat /etc/wedding/invite.js','cmd']]);
+  await sleep(jitter(250));
   var CODE=buildCode();
   for(var i=0;i<CODE.length;i++){
     if(CODE[i].length===0){printLine('');await sleep(60);continue;}
-    await typeSegs(CODE[i],12);await sleep(40);
+    await typeSegs(CODE[i],0.5,false);await sleep(jitter(40)); /* 代码区 2 倍速，关闭标点停顿 */
   }
-  await sleep(450);
-  await typeSegs([['# ','p'],['node invite.js --send-to=guest','cmd']],45);
-  await sleep(350);
+  await sleep(jitter(450));
+  await typeSegs([['# ','p'],['node invite.js --send-to=guest','cmd']]);
+  await sleep(jitter(350));
   var pl=newLine();pl.className='line blue';
-  for(var k=0;k<=20;k++){var b='[';for(var m=0;m<20;m++){b+=(m<k?'█':'░');}
-    pl.textContent='渲染邀请函 '+b+' '+(k*5)+'%';scrollDown();await sleep(60);}
+  for(var k=0;k<=20;k++){var b='[';for(var m=0;m<20;m++){b+=(m<k?'█':'░');}b+=']';
+    pl.textContent='渲染邀请函 '+b+' '+(k*5)+'%';scrollDown();await sleep(jitter(60));}
   printLine('[ DONE ] 邀请函投递成功 · 请查收','ok');
-  await sleep(400);
   holdBottom(false);
-  showCard();
+  showCard(); /* 立即显示请柬 */
   await sleep(3200);
   printLine('');
   /* 最后一行：$ 提示符 + PS（逐字打字），光标跟在句尾 */
   var last=newLine();var sp=mk('p');sp.textContent='# ';last.appendChild(sp);
   var ps=mk('cmt');last.appendChild(ps);
-  var pstext='PS. 本请柬长期有效 · 转发分享这份喜悦 ♥';
-  for(var i=0;i<pstext.length;i++){
-    ps.textContent+=pstext.charAt(i);scrollDown();
-    var ms=45*(0.6+Math.random());
-    var ch=pstext.charAt(i);
-    if(Math.random()<0.05){ms+=150+Math.random()*200;}          /* 偶尔"想一下" */
-    if(ch===' '||';,(){}·'.indexOf(ch)>=0){ms+=15+Math.random()*35;} /* 标点/空格微顿 */
-    await sleep(ms);
-  }
+  await typeText(ps,'PS. 本请柬长期有效 · 转发分享这份喜悦 ♥');
   last.appendChild(mk('cursor'));
 }
 boot();
