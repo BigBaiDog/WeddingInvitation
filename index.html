@@ -39,13 +39,14 @@ body{background:#0f0c29;
 .bar h1{position:absolute;left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;
   color:#5c609e;white-space:nowrap;max-width:58%;overflow:hidden;text-overflow:ellipsis}
 /* 屏幕区 */
-/* 终端正文：12px / 1.4（接近 macOS 放大一档的终端设置） */
+/* 终端正文：12px / 1.4（接近 macOS 放大一档的终端设置）· Cyberpunk 霓虹青辉光 */
 #screen{padding:14px 16px 24px;font-size:12px;line-height:1.4;color:#e8f6ff;
   text-shadow:0 0 8px rgba(0,240,255,.18);
   flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
 #screen::-webkit-scrollbar{width:0;height:0;display:none}
 .line{white-space:pre-wrap;word-break:break-all;min-height:1em}
 /* 语法配色 */
+/* Cyberpunk 语法配色（品红/青/黄霓虹辉光） */
 .dim{color:#5c609e;text-shadow:none}
 .ok{color:#00ffd1;text-shadow:0 0 8px rgba(0,255,209,.5)}
 .blue{color:#00f0ff}.cmd{color:#e8f6ff}
@@ -60,36 +61,38 @@ body{background:#0f0c29;
   vertical-align:-2px;margin-left:1px;animation:blink 1.06s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 /* 请柬卡片 */
+/* 方案 C · 请柬票券：外实线 + 内虚线双边框 */
 .card{margin:14px 2px 4px;border:1px solid #ff79c6;border-radius:10px;
+  outline:1px dashed rgba(255,121,198,.35);outline-offset:-7px;position:relative;
   background:linear-gradient(180deg,rgba(255,121,198,.12),rgba(15,12,41,.55));
   box-shadow:0 0 22px rgba(255,121,198,.22),inset 0 0 18px rgba(255,121,198,.06);
   padding:22px 14px;text-align:center;text-shadow:none;line-height:1.75}
 .card-row{opacity:0;animation:fadeUp .55s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.en{color:#ff9ecf;font-size:11px;letter-spacing:3px;text-shadow:0 0 8px rgba(255,121,198,.65)}
-.names{font-size:22px;color:#ff5fa8;font-weight:700;letter-spacing:2px;margin:10px 0 4px;
-  text-shadow:0 0 6px rgba(255,95,168,.85),0 0 18px rgba(255,95,168,.5),0 0 40px rgba(255,95,168,.3)}
 .heart{color:#ff5fa8;text-shadow:0 0 10px rgba(255,95,168,.9),0 0 24px rgba(255,95,168,.55)}
-.hr{border-top:1px dashed rgba(255,121,198,.45);margin:12px auto;width:78%}
+.t-title{font-size:16px;font-weight:700;letter-spacing:8px;color:#ff9ecf;
+  text-shadow:0 0 10px rgba(255,121,198,.7);margin:8px 0 2px}
+.t-en{color:#6b7099;font-size:10px;letter-spacing:4px}
+.t-couple{font-size:20px;font-weight:700;color:#ff5fa8;letter-spacing:3px;margin:10px 0 2px;
+  text-shadow:0 0 6px rgba(255,95,168,.85),0 0 18px rgba(255,95,168,.5)}
+.t-perf{position:relative;border-top:1px dashed rgba(255,121,198,.55);margin:14px 0;width:100%}
+.punch{position:absolute;top:-7px;width:14px;height:14px;border-radius:50%;
+  background:#0f0c29;border:1px solid rgba(255,121,198,.45)}
+.punch.l{left:-8px}.punch.r{right:-8px}
 .info{color:#f3e8ff;font-size:14px;line-height:2.1}
 .info b{color:#ffeaf6;font-weight:600;text-shadow:0 0 8px rgba(255,158,207,.35)}
 a.addr{color:#ff8fd0;text-decoration:none;border-bottom:1px dashed rgba(255,143,208,.5);
   text-shadow:0 0 8px rgba(255,143,208,.4)}
 a.addr:active{opacity:.7}
-.nav-chips{margin-top:10px}
-.nav-chips a{display:inline-block;margin:4px 4px 0;padding:3px 12px;border:1px solid #ff79c6;
-  border-radius:12px;color:#ff9ecf;font-size:12px;text-decoration:none;
-  text-shadow:0 0 6px rgba(255,121,198,.4)}
-.nav-chips a:active{background:rgba(255,121,198,.18)}
 .label{color:#b49ad1;margin-right:10px}
 .big-days{color:#ff9ecf;font-size:13px;margin-top:8px;text-shadow:0 0 10px rgba(255,158,207,.55)}
 .foot{color:#b49ad1;font-size:12px;margin-top:4px}
 /* 移动端适配（终端正文 15px，接近手机浏览器默认 16px） */
 @media (max-width:480px){
   #screen{font-size:15px;line-height:1.4;padding:10px 10px 24px}
-  .names{font-size:20px}
+  .t-couple{font-size:18px}
+  .t-title{letter-spacing:5px}
   .info{font-size:15px}
-  .en{font-size:12px}
   .bar h1{font-size:10px}
 }
 </style>
@@ -123,9 +126,9 @@ var vs=['幸福大酒店',''];var addr='广东省佛山市高明区荷城街道�
 /* 各地图导航链接：装了 App 的直接拉起，没装的打开地图网页 */
 var NAV_LAT='22.892189',NAV_LNG='112.853881',NAV_NAME=encodeURIComponent(vs[0]);
 var NAV_URL='https://uri.amap.com/navigation?from=&to='+NAV_LNG+','+NAV_LAT+','+NAV_NAME+'&mode=car&callnative=1&src=wedding-invitation';        /* 高德 */
-var NAV_BAIDU='https://map.baidu.com/mobile/webapp/navi/geocoder/?location='+NAV_LAT+','+NAV_LNG+'&name='+NAV_NAME+'&src=wedding-invitation&coord_type=0'; /* 百度（coord_type=0 表示 GCJ-02 坐标） */
-var NAV_TENCENT='https://apis.map.qq.com/uri/v1/routeplan?type=drive&to='+NAV_LAT+','+NAV_LNG+','+NAV_NAME+'&referer=wedding-invitation';             /* 腾讯 */
-var NAV_APPLE='https://maps.apple.com/?ll='+NAV_LAT+','+NAV_LNG+'&daddr='+NAV_NAME+'&address='+encodeURIComponent(addr);                                /* Apple 地图 */
+/* 男方家 / 女方家：按名称搜索式导航（高德 POI 定位，避免村级地点坐标偏差带错路） */
+var NAV_GROOM='https://uri.amap.com/search?keyword='+encodeURIComponent('佛山市高明区荷城街道名湖世家');
+var NAV_BRIDE='https://uri.amap.com/search?keyword='+encodeURIComponent('佛山市高明区上良村赵氏大宗祠');
 var yrs=rand(['3','5','6','7']),mon=pad(Math.floor(Math.random()*12)+1); /* 已相爱时长，可替换为真实值 */
 var lunar='农历十月二十';
 var days=Math.ceil((d.getTime()-Date.now())/86400000);
@@ -191,18 +194,17 @@ function row(html){var r=document.createElement('div');r.className='card-row';r.
 function showCard(){
   var c=document.createElement('div');c.className='card';
   var items=[
-   '<div class=en>W E D D I N G · I N V I T A T I O N</div>',
-   '<div class=names>'+groom+' <span class=heart>♥</span> '+bride+'</div>',
-   '<div style=color:#b49ad1;font-size:12px>佳期已定 · 敬备喜酌 · 诚邀见证</div>',
-   '<div class=hr></div>',
-   '<div class=info><span class=label>时间</span><b>'+DATE_ISO+'</b> '+wkd+' '+TIME_S+'</div>',
-   '<div class=info><span class=label>'+lunar+'</span></div>',
-   '<div class=info><span class=label>席设</span><b>'+vs[0]+(vs[1]?' · '+vs[1]:'')+'</b></div>',
-   '<div class=info><span class=label>地址</span><a class=addr href='+NAV_URL+' target=_blank>'+addr+' · 点击导航</a></div>',
-   '<div class=nav-chips><span class=label>地图导航</span><a target=_blank href='+NAV_URL+'>高德</a><a target=_blank href='+NAV_BAIDU+'>百度</a><a target=_blank href='+NAV_TENCENT+'>腾讯</a><a target=_blank href='+NAV_APPLE+'>Apple</a></div>',
+   '<div class=t-title>婚礼请柬</div>',
+   '<div class=t-en>W E D D I N G &nbsp; I N V I T A T I O N</div>',
+   '<div class=t-couple>'+groom+' <span class=heart>×</span> '+bride+'</div>',
+   '<div class=t-perf><span class=punch l></span><span class=punch r></span></div>',
+   '<div class=info><span class=label>日期</span><b>'+DATE_ISO+'</b> '+wkd+' · '+lunar+'</div>',
+   '<div class=info><span class=label>男方家</span><a class=addr href='+NAV_GROOM+' target=_blank>佛山市高明区荷城街道名湖世家18座1302</a></div>',
+   '<div class=info><span class=label>女方家</span><a class=addr href='+NAV_BRIDE+' target=_blank>佛山市高明区荷城街道上良村128号</a></div>',
+   '<div class=info><span class=label>席设</span><b>'+vs[0]+(vs[1]?' · '+vs[1]:'')+' · '+TIME_S+' 入席</b></div>',
+   '<div class=info><span class=label>地址</span><a class=addr href='+NAV_URL+' target=_blank>'+addr+'</a></div>',
    '<div class=big-days>距婚礼还有 '+days+' 天 · 期待与你相见</div>',
-   '<div class=hr></div>',
-   '<div class=foot>你们的到来，将是我们婚礼最美好的祝福</div>'
+   '<div class=foot>— 诚邀莅临 —</div>'
   ];
   for(var i=0;i<items.length;i++){var r=row(items[i]);r.style.animationDelay=(i*0.25)+'s';c.appendChild(r);}
   sc.appendChild(c);scrollDown();
