@@ -14,7 +14,7 @@
      部署上线后需要：
      1. 把下面两处 YOUR-DOMAIN 换成实际域名（必须 https）
      2. 封面图放在网站根目录 cover.jpg，建议 500×400（5:4）、jpg、1MB 以内 -->
-<meta property="og:title" content="冯宏远 ♥ 赵婉薇 婚礼邀请函">
+<meta property="og:title" content="冯宏远 ♥ 赵婉薇 婚宴邀请函">
 <meta property="og:type" content="website">
 <meta property="og:description" content="2026.11.28 18:00 · 幸福大酒店（广东佛山高明），诚邀您见证我们的婚礼">
 <meta property="og:image" content="https://bigbaidog.github.io/WeddingInvitation/cover.jpg">
@@ -37,25 +37,29 @@ body{background:#0f0c29;
 .r{background:#ff5f57}.y{background:#febc2e}.g{background:#28c840}
 /* 真实 macOS 标题：13pt / Semibold */
 .bar h1{position:absolute;left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;
-  color:#5c609e;white-space:nowrap;max-width:58%;overflow:hidden;text-overflow:ellipsis}
+  color:#5c609e;text-shadow:0 0 8px rgba(92,96,158,.5);white-space:nowrap;max-width:58%;overflow:hidden;text-overflow:ellipsis}
 /* 屏幕区 */
-/* 终端正文：12px / 1.4（接近 macOS 放大一档的终端设置）· Cyberpunk 霓虹青辉光 */
+/* 终端正文：12px / 1.4（接近 macOS 放大一档的终端设置）· 辉光颜色跟随各自字体颜色 */
 #screen{padding:14px 16px 24px;font-size:12px;line-height:1.4;color:#e8f6ff;
-  text-shadow:0 0 8px rgba(0,240,255,.18);
+  text-shadow:0 0 8px rgba(232,246,255,.5);
   flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
 #screen::-webkit-scrollbar{width:0;height:0;display:none}
 .line{white-space:pre-wrap;word-break:break-all;min-height:1em}
 /* 语法配色 */
-/* Cyberpunk 语法配色（品红/青/黄霓虹辉光） */
-.dim{color:#5c609e;text-shadow:none}
+/* Cyberpunk 语法配色 · 每个字符的辉光 = 它自己的字体颜色 */
+.dim{color:#5c609e;text-shadow:0 0 8px rgba(92,96,158,.5)}
 .ok{color:#00ffd1;text-shadow:0 0 8px rgba(0,255,209,.5)}
-.blue{color:#00f0ff}.cmd{color:#e8f6ff}
+.blue{color:#00f0ff;text-shadow:0 0 8px rgba(0,240,255,.5)}
+.cmd{color:#e8f6ff;text-shadow:0 0 8px rgba(232,246,255,.5)}
 .p{color:#00f0ff;font-weight:700;text-shadow:0 0 8px rgba(0,240,255,.5)}
 .kw{color:#ff2e88;text-shadow:0 0 8px rgba(255,46,136,.5)}
-.str{color:#f9f871;text-shadow:0 0 6px rgba(249,248,113,.35)}
-.cmt{color:#5c609e;text-shadow:none}.prop{color:#00ffd1}
+.str{color:#f9f871;text-shadow:0 0 8px rgba(249,248,113,.5)}
+.cmt{color:#5c609e;text-shadow:0 0 8px rgba(92,96,158,.5)}
+.prop{color:#00ffd1;text-shadow:0 0 8px rgba(0,255,209,.5)}
 .fn{color:#c77dff;text-shadow:0 0 8px rgba(199,125,255,.5)}
-.var{color:#00f0ff}.num{color:#33c7ff}.op{color:#e8f6ff}
+.var{color:#00f0ff;text-shadow:0 0 8px rgba(0,240,255,.5)}
+.num{color:#33c7ff;text-shadow:0 0 8px rgba(51,199,255,.5)}
+.op{color:#e8f6ff;text-shadow:0 0 8px rgba(232,246,255,.5)}
 /* 光标 */
 .cursor{display:inline-block;width:7px;height:1.05em;background:#00f0ff;
   vertical-align:-2px;margin-left:1px;animation:blink 1.06s steps(1) infinite}
@@ -67,30 +71,30 @@ body{background:#0f0c29;
   background:linear-gradient(180deg,rgba(255,121,198,.12),rgba(15,12,41,.55));
   box-shadow:0 0 22px rgba(255,121,198,.22),inset 0 0 18px rgba(255,121,198,.06);
   padding:22px 14px;text-align:center;text-shadow:none;line-height:1.75}
-.card-row{opacity:0;animation:fadeUp .55s forwards}
+.card-row{opacity:0;animation:fadeUp .5s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.heart{color:#ff5fa8;text-shadow:0 0 10px rgba(255,95,168,.9),0 0 24px rgba(255,95,168,.55)}
+.heart{color:#ff5fa8;text-shadow:0 0 8px rgba(255,95,168,.9),0 0 20px rgba(255,95,168,.55),0 0 44px rgba(255,95,168,.3)}
 .t-title{font-size:16px;font-weight:700;letter-spacing:8px;color:#ff9ecf;
-  text-shadow:0 0 10px rgba(255,121,198,.7);margin:8px 0 2px}
-.t-en{color:#6b7099;font-size:10px;letter-spacing:4px}
-.t-couple{font-size:20px;font-weight:700;color:#ff5fa8;letter-spacing:3px;margin:10px 0 2px;
-  text-shadow:0 0 6px rgba(255,95,168,.85),0 0 18px rgba(255,95,168,.5)}
+  text-shadow:0 0 8px rgba(255,158,207,.5);margin:8px 0 2px}
+.t-en{color:#6b7099;font-size:10px;letter-spacing:4px;text-shadow:0 0 8px rgba(107,112,153,.5)}
+.t-couple{font-size:24px;font-weight:700;color:#ff5fa8;letter-spacing:3px;margin:10px 0 2px;
+  text-shadow:0 0 8px rgba(255,95,168,.9),0 0 20px rgba(255,95,168,.55),0 0 44px rgba(255,95,168,.3)}
 .t-perf{position:relative;border-top:1px dashed rgba(255,121,198,.55);margin:14px 0;width:100%}
 .punch{position:absolute;top:-7px;width:14px;height:14px;border-radius:50%;
   background:#0f0c29;border:1px solid rgba(255,121,198,.45)}
 .punch.l{left:-8px}.punch.r{right:-8px}
-.info{color:#f3e8ff;font-size:14px;line-height:2.1}
-.info b{color:#ffeaf6;font-weight:600;text-shadow:0 0 8px rgba(255,158,207,.35)}
+.info{color:#f3e8ff;font-size:14px;line-height:2.1;text-shadow:0 0 8px rgba(243,232,255,.5)}
+.info b{color:#ffeaf6;font-weight:600;text-shadow:0 0 8px rgba(255,234,246,.5)}
 a.addr{color:#ff8fd0;text-decoration:none;border-bottom:1px dashed rgba(255,143,208,.5);
-  text-shadow:0 0 8px rgba(255,143,208,.4)}
+  text-shadow:0 0 8px rgba(255,143,208,.5)}
 a.addr:active{opacity:.7}
-.label{color:#b49ad1;margin-right:10px}
-.big-days{color:#ff9ecf;font-size:13px;margin-top:8px;text-shadow:0 0 10px rgba(255,158,207,.55)}
-.foot{color:#b49ad1;font-size:12px;margin-top:4px}
+.label{color:#b49ad1;margin-right:10px;text-shadow:0 0 8px rgba(180,154,209,.5)}
+.big-days{color:#ff9ecf;font-size:13px;margin-top:8px;text-shadow:0 0 8px rgba(255,158,207,.5)}
+.foot{color:#b49ad1;font-size:12px;margin-top:4px;text-shadow:0 0 8px rgba(180,154,209,.5)}
 /* 移动端适配（终端正文 15px，接近手机浏览器默认 16px） */
 @media (max-width:480px){
   #screen{font-size:15px;line-height:1.4;padding:10px 10px 24px}
-  .t-couple{font-size:18px}
+  .t-couple{font-size:22px}
   .t-title{letter-spacing:5px}
   .info{font-size:15px}
   .bar h1{font-size:10px}
@@ -146,9 +150,9 @@ function holdBottom(on){var lh=parseFloat(getComputedStyle(sc).lineHeight)||23;
 function mk(cls){var s=document.createElement('span');if(cls){s.className=cls;}return s;}
 function newLine(){var l=document.createElement('div');l.className='line';sc.appendChild(l);scrollDown();return l;}
 function printLine(t,c){var l=newLine();if(c){l.className+=' '+c;}l.textContent=t;}
-/* 核心打字效果：50ms/字 × 0.5~1.5 随机快慢；
-   "想一下"（5% 概率）与 标点/空格 停顿统一为 原基础 + 100~200ms；factor 供代码区 2 倍速 */
-var TYPE_SPEED=50;
+/* 核心打字效果：30ms/字 × 0.5~1.5 随机快慢；
+   "想一下"（5% 概率）与 标点/空格 停顿统一为 原基础 + 50~100ms；factor 供代码区 4 倍速 */
+var TYPE_SPEED=30;
 /* punct 传 false 可关闭标点停顿（代码区用），5% 思考停顿始终保留 */
 async function typeText(span,text,factor,punct){
   var f=factor||1;
@@ -157,7 +161,7 @@ async function typeText(span,text,factor,punct){
     var ms=TYPE_SPEED*(0.5+Math.random());
     var ch=text.charAt(j);
     if(Math.random()<0.05||(punct!==false&&(ch===' '||';,(){}\'·'.indexOf(ch)>=0))){
-      ms+=TYPE_SPEED+(100+Math.random()*100);} /* 停顿：原基础 + 100~200ms */
+      ms+=TYPE_SPEED+(50+Math.random()*50);} /* 停顿：原基础 + 50~100ms */
     await sleep(ms*f);
   }}
 async function typeSegs(segs,factor,punct){var l=newLine();
@@ -170,8 +174,8 @@ async function printBlock(lines,cls,gap){
 /* ============ 3. 代码打字内容（带语法高亮分段） ============ */
 function buildCode(){return [
  [['const ','kw'],['wedding ','var'],['= {','op']],
- [['  groom','prop'],[': ','op'],[q(groom),'str'],['  // 他的名字，写在她备注的第一行','cmt']],
- [['  bride','prop'],[': ','op'],[q(bride),'str'],['  // 她的笑容，是他的全世界','cmt']],
+ [['  groom','prop'],[': ','op'],[q(groom),'str'],['      // 他的名字，写在她备注的第一行','cmt']],
+ [['  bride','prop'],[': ','op'],[q(bride),'str'],['      // 她的笑容，是他的全世界','cmt']],
  [['  date','prop'],[': ','op'],[q(DATE_ISO),'str'],['  // Save the date!','cmt']],
  [['  place','prop'],[': ','op'],[q(vs[0]+(vs[1]?' · '+vs[1]:'')),'str']],
  [['  addr','prop'],[': ','op'],[q(addr),'str']],
@@ -186,7 +190,7 @@ function buildCode(){return [
  [['  return ','kw'],['Infinity;','num'],['    // 爱没有返回值，只有延续','cmt']],
  [['}','op']],
  [],
- [['bless','fn'],['(you);','op'],['   // you = 正在看这份请柬的你','cmt']]
+ [['bless','fn'],['(you);','op'],['        // you = 正在看这份请柬的你','cmt']]
 ];}
 
 /* ============ 4. 请柬卡片 ============ */
@@ -194,19 +198,20 @@ function row(html){var r=document.createElement('div');r.className='card-row';r.
 function showCard(){
   var c=document.createElement('div');c.className='card';
   var items=[
-   '<div class=t-title>婚礼请柬</div>',
+   '<div class=t-title>婚宴请柬</div>',
    '<div class=t-en>W E D D I N G &nbsp; I N V I T A T I O N</div>',
    '<div class=t-couple>'+groom+' <span class=heart>×</span> '+bride+'</div>',
    '<div class=t-perf><span class=punch l></span><span class=punch r></span></div>',
    '<div class=info><span class=label>日期</span><b>'+DATE_ISO+'</b> '+wkd+' · '+lunar+'</div>',
    '<div class=info><span class=label>男方家</span><a class=addr href='+NAV_GROOM+' target=_blank>佛山市高明区荷城街道名湖世家18座1302</a></div>',
    '<div class=info><span class=label>女方家</span><a class=addr href='+NAV_BRIDE+' target=_blank>佛山市高明区荷城街道上良村128号</a></div>',
-   '<div class=info><span class=label>席设</span><b>'+vs[0]+(vs[1]?' · '+vs[1]:'')+' · '+TIME_S+' 入席</b></div>',
+   '<div class=info><b>席设 '+vs[0]+(vs[1]?' · '+vs[1]:'')+' · '+TIME_S+' 入席</b></div>',
    '<div class=info><span class=label>地址</span><a class=addr href='+NAV_URL+' target=_blank>'+addr+'</a></div>',
    '<div class=big-days>距婚礼还有 '+days+' 天 · 期待与你相见</div>',
    '<div class=foot>— 诚邀莅临 —</div>'
   ];
-  for(var i=0;i<items.length;i++){var r=row(items[i]);r.style.animationDelay=(i*0.25)+'s';c.appendChild(r);}
+  /* 卡片渐入：行间隔 0.2s × 11 行 + 单行 0.5s ≈ 2.5s（<3s） */
+  for(var i=0;i<items.length;i++){var r=row(items[i]);r.style.animationDelay=(i*0.2)+'s';c.appendChild(r);}
   sc.appendChild(c);scrollDown();
 }
 
@@ -242,7 +247,7 @@ async function boot(){
   var CODE=buildCode();
   for(var i=0;i<CODE.length;i++){
     if(CODE[i].length===0){printLine('');await sleep(60);continue;}
-    await typeSegs(CODE[i],0.5,false);await sleep(jitter(40)); /* 代码区 2 倍速，关闭标点停顿 */
+    await typeSegs(CODE[i],0.25,false);await sleep(jitter(40)); /* 代码区 4 倍速，关闭标点停顿 */
   }
   await sleep(jitter(450));
   await typeSegs([['# ','p'],['node invite.js --send-to=guest','cmd']]);
